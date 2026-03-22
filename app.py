@@ -1,5 +1,6 @@
 import streamlit as st
 import joblib
+import re   # ✅ added
 
 # -------------------------
 # Page Config
@@ -58,6 +59,14 @@ model = load_model()
 vectorizer = load_vectorizer()
 
 # -------------------------
+# Text Cleaning (✅ added)
+# -------------------------
+def clean_text(text):
+    text = text.lower()
+    text = re.sub(r'[^a-zA-Z]', ' ', text)
+    return text
+
+# -------------------------
 # Sidebar
 # -------------------------
 st.sidebar.title("📌 About")
@@ -79,7 +88,7 @@ st.title("📰 Fake News Detection System")
 
 st.write("Paste a news article below and the AI will predict whether it is **Fake or Real**.")
 
-news = st.text_area("✍ Enter News Article")
+news = st.text_area("Enter News Article")
 
 # -------------------------
 # Prediction Button
@@ -102,18 +111,27 @@ if st.button("Predict"):
         col2.metric("Character Count", char_count)
 
         # -------------------------
+        # ✅ Clean Text (added)
+        # -------------------------
+        cleaned_news = clean_text(news)
+
+        # -------------------------
         # Vectorization
         # -------------------------
-        news_vector = vectorizer.transform([news])
+        news_vector = vectorizer.transform([cleaned_news])
 
         # -------------------------
         # Prediction
         # -------------------------
         prediction = model.predict(news_vector)
 
+        # ✅ Debug (optional - ek baar check kar lena)
+        st.write("Prediction:", prediction[0])
+
         st.subheader("📢 Prediction Result")
 
-        if prediction[0] == "REAL":
+        # ✅ Correct Logic (FIXED)
+        if prediction[0] == 1:
             st.success("✅ This looks like Real News")
         else:
             st.error("🚨 This looks like Fake News")
