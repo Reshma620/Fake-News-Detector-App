@@ -1,6 +1,6 @@
 import streamlit as st
 import joblib
-import re   # ✅ added
+import re   
 
 # -------------------------
 # Page Config
@@ -59,7 +59,7 @@ model = load_model()
 vectorizer = load_vectorizer()
 
 # -------------------------
-# Text Cleaning (✅ added)
+# Text Cleaning
 # -------------------------
 def clean_text(text):
     text = text.lower()
@@ -111,7 +111,7 @@ if st.button("Predict"):
         col2.metric("Character Count", char_count)
 
         # -------------------------
-        # ✅ Clean Text (added)
+        # Clean Text 
         # -------------------------
         cleaned_news = clean_text(news)
 
@@ -125,12 +125,11 @@ if st.button("Predict"):
         # -------------------------
         prediction = model.predict(news_vector)
 
-        # ✅ Debug (optional - ek baar check kar lena)
+        
         st.write("Prediction:", prediction[0])
 
         st.subheader("📢 Prediction Result")
 
-        # ✅ Correct Logic (FIXED)
         if prediction[0] == 1:
             st.success("✅ This looks like Real News")
         else:
