@@ -24,7 +24,7 @@ Train-Test Split: 80% training, 20% testing
 Max Iterations: 1000
 
 📊 Results
-Accuracy: XX% (run your code and fill this)
+Accuracy: 94-96% accuracy
 Evaluation:
     Accuracy Score
     Confusion Matrix
