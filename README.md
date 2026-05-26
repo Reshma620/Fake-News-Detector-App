@@ -57,7 +57,7 @@ Fake-News-Detector-App/
 
 
 🌐 Live Demo
-https://fake-news-detector-app-8cj7rfzt4mnetsiwrsxgnq.streamlit.app/
+https://fake-news-detector-app-ermiva5zjpsgfgc8y6ky6y.streamlit.app/
 
 ⚠️ Limitations
 Model only analyzes text patterns
